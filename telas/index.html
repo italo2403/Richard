@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de Página</title>
+  <style>
+    /* Estilos CSS para alinhar os elementos */
+    body {
+      background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .logo {
+      width: 100px;
+      margin-right: 20px;
+    }
+    .image {
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .filters input,
+    .filters select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .filters button {
+      padding: 5px 10px;
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .blocks {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+    .block {
+      width: 200px;
+      height: 200px;
+      background-color: lightgray;
+    }
+    .show-more,
+    .show-less {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .show-more button,
+    .show-less button {
+      padding: 5px 10px;
+      background-color: #4caf50;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .footer {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .social {
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img class="logo" src="logo.png" alt="Logo">
+      <!-- Coloque o caminho da imagem da logo no atributo src -->
+    </div>
+    <img class="image" src="imagem.png" alt="Imagem">
+    <!-- Coloque o caminho da imagem centralizada no atributo src -->
+    <div class="filters">
+      <input type="text" placeholder="Pesquisar">
+      <div>
+        <select>
+          <option>Modalidade</option>
+          <!-- Adicione as opções desejadas para o filtro Modalidade -->
+        </select>
+        <select>
+          <option>Local</option>
+          <!-- Adicione as opções desejadas para o filtro Local -->
+        </select>
+        <select>
+          <option>Periodo</option>
+          <!-- Adicione as opções desejadas para o filtro Periodo -->
+        </select>
+        <select>
+          <option>Dinheiro</option>
+          <!-- Adicione as opções desejadas para o filtro Dinheiro -->
+        </select>
+        <select>
+          <option>Data</option>
+          <!-- Adicione as opções desejadas para o filtro Data -->
+        </select>
+        <button>Filtrar</button>
+      </div>
+    </div>
+    <div class="blocks">
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+    </div>
+    <div class="show-more">
+      <button onclick="showMoreBlocks()">Mostrar Mais</button>
+    </div>
+    <div class="show-less" style="display: none;">
+      <button onclick="showLessBlocks()">Mostrar Menos</button>
+    </div>
+
+    <script>
+      let allBlocks = document.querySelectorAll('.block');
+      let visibleBlocks = 6; // Número inicial de blocos visíveis
+
+      function showMoreBlocks() {
+        visibleBlocks += 4; // Incrementa 4 para exibir mais blocos
+        updateVisibility();
+      }
+
+      function showLessBlocks() {
+        visibleBlocks -= 4; // Decrementa 4 para exibir menos blocos
+        updateVisibility();
+      }
+
+      function updateVisibility() {
+        allBlocks.forEach((block, index) => {
+          if (index < visibleBlocks) {
+            block.style.display = 'block'; // Exibe os blocos até o número visível
+          } else {
+            block.style.display = 'none'; // Oculta os blocos adicionais
+          }
+        });
+
+        // Exibe ou oculta o botão "Mostrar Menos" dependendo do número de blocos visíveis
+        const showLessButton = document.querySelector('.show-less');
+        if (visibleBlocks > 6) {
+          showLessButton.style.display = 'block';
+        } else {
+          showLessButton.style.display = 'none';
+        }
+      }
+      
+      // Exibe inicialmente apenas os blocos iniciais (6 no total)
+      updateVisibility();
+    </script>
+
+    <div class="footer">
+      <a class="social" href="#">Facebook</a>
+      <a class="social" href="#">Twitter</a>
+      <a class="social" href="#">Instagram</a>
+    </div>
+  </div>
+</body>
+</html>
